@@ -1,20 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Home from "./src/components/screen/Home";
+import Episode from "./src/components/screen/Episode";
+import Location from "./src/components/screen/Location";
+import Character from "./src/components/screen/Character";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Tela inicial"
+          component={Home}
+        />
+        <Stack.Screen
+          name="Episódios"
+          component={Episode}
+        />
+        <Stack.Screen
+          name="Personagens"
+          component={Character}
+        />
+        <Stack.Screen
+          name="Localizações"
+          component={Location}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
